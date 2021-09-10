@@ -1,0 +1,35 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31220.234
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ScamWatch", "ScamWatch\ScamWatch.csproj", "{FB784E84-E585-4889-840F-03A0366B265C}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ScamWatch.WinUI", "ScamWatch.WinUI\ScamWatch.WinUI.csproj", "{301A1DE3-36E3-451C-B674-D548CAB2CA82}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{FB784E84-E585-4889-840F-03A0366B265C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FB784E84-E585-4889-840F-03A0366B265C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FB784E84-E585-4889-840F-03A0366B265C}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{FB784E84-E585-4889-840F-03A0366B265C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FB784E84-E585-4889-840F-03A0366B265C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FB784E84-E585-4889-840F-03A0366B265C}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{301A1DE3-36E3-451C-B674-D548CAB2CA82}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{301A1DE3-36E3-451C-B674-D548CAB2CA82}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{301A1DE3-36E3-451C-B674-D548CAB2CA82}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{301A1DE3-36E3-451C-B674-D548CAB2CA82}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{301A1DE3-36E3-451C-B674-D548CAB2CA82}.Release|Any CPU.Build.0 = Release|Any CPU
+		{301A1DE3-36E3-451C-B674-D548CAB2CA82}.Release|Any CPU.Deploy.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {61F7FB11-1E47-470C-91E2-47F8143E1572}
+	EndGlobalSection
+EndGlobal
