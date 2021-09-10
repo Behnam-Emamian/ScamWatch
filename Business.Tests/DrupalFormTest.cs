@@ -8,6 +8,6 @@ public class DrupalFormTest
     public async Task SubmitAFrom()
     {
         var drupalForm = new DrupalForm();
-        await drupalForm.Step1();
+        await drupalForm.Process();
     }
 }
