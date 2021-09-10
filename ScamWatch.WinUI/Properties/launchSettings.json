@@ -1,8 +1,0 @@
-{
-  "profiles": {
-    "ScamWatch.WinUI": {
-      "commandName": "MsixPackage",
-      "nativeDebugging": false
-    }
-  }
-}
