@@ -15,7 +15,10 @@ public class DrupalForm
     public async Task Step1()
     {
         var response = await client.GetAsync("report-a-scam");
-
+        if (response.IsSuccessStatusCode)
+        {
+            var html = await response.Content.ReadAsStringAsync();
+        }
         var form_build_id = "";
 
     }
