@@ -1,3 +1,4 @@
+using Business.Models;
 using Xunit;
 
 namespace Business.Tests;
@@ -8,6 +9,10 @@ public class DrupalFormTest
     public async Task SubmitAFrom()
     {
         var drupalForm = new DrupalForm();
-        await drupalForm.Process();
+        var report = new Report
+        {
+
+        };
+        await drupalForm.Process(report);
     }
 }
