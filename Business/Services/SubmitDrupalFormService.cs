@@ -2,18 +2,16 @@
 using HtmlAgilityPack;
 using System.Globalization;
 
-namespace Business;
+namespace Business.Services;
 
-public class DrupalForm : IDisposable
+public class SubmitDrupalFormService
 {
-    private readonly HttpClient client;
+    private readonly HttpClient _client;
 
-    public DrupalForm()
+    public SubmitDrupalFormService(HttpClient client)
     {
-        client = new HttpClient
-        {
-            BaseAddress = new Uri("https://www.scamwatch.gov.au/")
-        };
+        _client = client;
+        
     }
 
     public async Task<bool> Process(Report report)
@@ -21,7 +19,7 @@ public class DrupalForm : IDisposable
 
         #region Step 0
 
-        var response0 = await client.GetAsync("report-a-scam");
+        var response0 = await _client.GetAsync("report-a-scam");
         if (!response0.IsSuccessStatusCode)
         {
             return false;
@@ -39,7 +37,7 @@ public class DrupalForm : IDisposable
         webForm1.AddParameter("op", "Next");
         webForm1.AddParameter("url", "");
 
-        var response1 = await client.PostAsync("report-a-scam", webForm1.GetContent());
+        var response1 = await _client.PostAsync("report-a-scam", webForm1.GetContent());
         if (!response1.IsSuccessStatusCode)
         {
             return false;
@@ -89,7 +87,7 @@ public class DrupalForm : IDisposable
         webForm2.AddParameter("which_website_were_you_using[select]", "");
         webForm2.AddParameter("your_facebook_url", "");
 
-        var response2 = await client.PostAsync("report-a-scam", webForm2.GetContent());
+        var response2 = await _client.PostAsync("report-a-scam", webForm2.GetContent());
         if (!response2.IsSuccessStatusCode)
         {
             return false;
@@ -130,7 +128,7 @@ public class DrupalForm : IDisposable
         webForm3.AddParameter("person_targeted_postcode", "");
         webForm3.AddParameter("person_targeted_state", report.TargetState.ToString());
 
-        var response3 = await client.PostAsync("report-a-scam", webForm3.GetContent());
+        var response3 = await _client.PostAsync("report-a-scam", webForm3.GetContent());
         if (!response3.IsSuccessStatusCode)
         {
             return false;
@@ -149,7 +147,7 @@ public class DrupalForm : IDisposable
         webForm4.AddParameter("share_report_government", "yes");
         webForm4.AddParameter("share_report_private_sector", "yes");
         webForm4.AddParameter("would_you_be_willing_to_share_your_story", "yes_anonymous");
-        var response4 = await client.PostAsync("report-a-scam", webForm4.GetContent());
+        var response4 = await _client.PostAsync("report-a-scam", webForm4.GetContent());
         if (!response4.IsSuccessStatusCode)
         {
             return false;
@@ -166,23 +164,6 @@ public class DrupalForm : IDisposable
         doc.LoadHtml(html);
         var element = doc.DocumentNode.SelectSingleNode("//input[@name='form_build_id']");
         return element.GetAttributeValue("value", "");
-    }
-
-    public void Dispose()
-    {
-        Dispose(true);
-        GC.SuppressFinalize(true);
-    }
-
-    protected virtual void Dispose(bool disposing)
-    {
-        if (disposing)
-        {
-            if (client != null)
-            {
-                client.Dispose();
-            }
-        }
     }
 }
 
