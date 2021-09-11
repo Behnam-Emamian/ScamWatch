@@ -1,12 +1,12 @@
 ﻿using Business.Enums;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Converters;
 
 namespace Business.Models;
 
 public class Report
 {
-    [JsonConverter(typeof(StringEnumConverter))]
+    public ScamType ScamType { get; set; }
     public DeliveryMethod DeliveryMethod { get; set; }
+    public DateOnly FirstContactDate { get; set; }
+    public string ScammerPhoneNumber { get; set; }
+    public string? Description { get; set; }
 }
-
