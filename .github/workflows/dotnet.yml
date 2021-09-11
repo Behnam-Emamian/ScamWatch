@@ -1,4 +1,4 @@
-name: .NET
+name: Build MAUI-Windows
 
 on:
   push:
@@ -7,29 +7,39 @@ on:
     branches: [ master ]
 
 jobs:
-  build:
-
+  buildwindows:
     runs-on: windows-latest
 
     steps:
-    - uses: actions/checkout@v2
-    - name: Setup .NET 5
-      uses: actions/setup-dotnet@v1
-      with:
-        dotnet-version: 5.0.x
-        include-prerelease: true
-    - name: Setup .NET 6
-      uses: actions/setup-dotnet@v1
-      with:
-        dotnet-version: 6.0.x
-        include-prerelease: true
-    - name: install maui
-      run: dotnet tool install -g redth.net.maui.check
-    - name: check maui
-      run: maui-check
+    - name: Install Visual Studio Preview
+      shell: pwsh
+      run: powershell .\build\install-vs.ps1
+        
+    - name: Add msbuild to PATH
+      shell: pwsh
+      run: |
+        dotnet tool update -g dotnet-vs
+        & echo "$(vs where preview --prop=InstallationPath)\MSBuild\Current\Bin" | Out-File -FilePath $env:GITHUB_PATH -Encoding utf8 -Append
+          
+    - name:  install .NET 6 preview
+      shell: pwsh
+      run: |
+        $ProgressPreference = 'SilentlyContinue'
+        Invoke-WebRequest -Uri "https://dot.net/v1/dotnet-install.ps1" -OutFile dotnet-install.ps1
+        & .\dotnet-install.ps1 -Version ${{env.DOTNETVERSION}} -InstallDir "$env:ProgramFiles\dotnet\" -Verbose
+        & dotnet --list-sdks
+    
+    - name: Install and Run maui-check Tool
+      shell: pwsh
+      run: |
+        & dotnet tool update --global redth.net.maui.check
+        & maui-check --ci --non-interactive --fix --skip androidsdk --skip xcode --skip vswin --skip vsmac --skip edgewebview2
+    
     - name: Restore dependencies
       run: dotnet restore
+    
     - name: Build
       run: dotnet build --no-restore
+    
     - name: Test
       run: dotnet test --no-build --verbosity normal
