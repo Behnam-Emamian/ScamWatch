@@ -99,13 +99,14 @@ public class DrupalForm
 
         #endregion
 
-        // Step 3
+        #region Step 3
+
         var webForm3 = new WebForm();
         webForm3.AddParameter("age_of_business", "");
-        webForm3.AddParameter("do_you_use_a_tty_telephone_typewriter", "");
+        webForm3.AddParameter("do_you_use_a_tty_telephone_typewriter", "no");
         webForm3.AddParameter("form_build_id", formBuildId2);
         webForm3.AddParameter("form_id", "webform_submission_report_a_scam_node_1000_add_form");
-        webForm3.AddParameter("im_reporting", "");
+        webForm3.AddParameter("im_reporting", "as_myself");
         webForm3.AddParameter("name_of_business", "");
         webForm3.AddParameter("number_of_employees", "");
         webForm3.AddParameter("op", "Preview");
@@ -121,13 +122,13 @@ public class DrupalForm
         webForm3.AddParameter("person_targeted_address_2", "");
         webForm3.AddParameter("person_targeted_age", "");
         webForm3.AddParameter("person_targeted_city_suburb", "");
-        webForm3.AddParameter("person_targeted_email", "");
-        webForm3.AddParameter("person_targeted_first_name", "");
-        webForm3.AddParameter("person_targeted_gender", "");
-        webForm3.AddParameter("person_targeted_last_name", "");
-        webForm3.AddParameter("person_targeted_phone_number", "");
+        webForm3.AddParameter("person_targeted_email", report.TargetEmail);
+        webForm3.AddParameter("person_targeted_first_name", report.TargetFirstName);
+        webForm3.AddParameter("person_targeted_gender", report.TargetGender.ToString());
+        webForm3.AddParameter("person_targeted_last_name", report.TargetLastName);
+        webForm3.AddParameter("person_targeted_phone_number", report.TargetPhoneNumber);
         webForm3.AddParameter("person_targeted_postcode", "");
-        webForm3.AddParameter("person_targeted_state", "");
+        webForm3.AddParameter("person_targeted_state", report.TargetState.ToString());
 
         var response3 = await client.PostAsync("report-a-scam", webForm3.GetContent());
         if (!response3.IsSuccessStatusCode)
@@ -137,10 +138,24 @@ public class DrupalForm
         var html3 = await response2.Content.ReadAsStringAsync();
         var formBuildId3 = GetFormBuildId(html3);
 
-        // Step 4
-        var webForm4 = new WebForm();
+        #endregion
 
+        #region Step 4
+
+        var webForm4 = new WebForm();
+        webForm4.AddParameter("form_build_id", formBuildId3);
+        webForm4.AddParameter("form_id", "webform_submission_report_a_scam_node_1000_add_form");
+        webForm4.AddParameter("op", "Submit");
+        webForm4.AddParameter("share_report_government", "yes");
+        webForm4.AddParameter("share_report_private_sector", "yes");
+        webForm4.AddParameter("would_you_be_willing_to_share_your_story", "yes_anonymous");
         var response4 = await client.PostAsync("report-a-scam", webForm4.GetContent());
+        if (!response4.IsSuccessStatusCode)
+        {
+            return false;
+        }
+
+        #endregion
 
         return true;
     }

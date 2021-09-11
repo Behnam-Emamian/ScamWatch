@@ -12,8 +12,6 @@ public static class ScamTypeExtensions
         return me switch
         {
             ScamType.IdentityTheft => "Identity Theft",
-            _ => "",
         };
     }
 }
-
