@@ -9,7 +9,7 @@ on:
 jobs:
   build:
 
-    runs-on: ubuntu-latest
+    runs-on: windows-latest
 
     steps:
     - uses: actions/checkout@v2
@@ -19,7 +19,7 @@ jobs:
         dotnet-version: 6.0.x
         include-prerelease: true
     - name: install maui
-      run: dotnet tool install -g Redth.Net.Maui.Check
+      run: dotnet tool install -g redth.net.maui.check
     - name: check maui
       run: maui-check
     - name: Restore dependencies
