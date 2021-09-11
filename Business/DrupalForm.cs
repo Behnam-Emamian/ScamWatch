@@ -4,9 +4,9 @@ using System.Globalization;
 
 namespace Business;
 
-public class DrupalForm
+public class DrupalForm : IDisposable
 {
-    HttpClient client;
+    private readonly HttpClient client;
 
     public DrupalForm()
     {
@@ -160,7 +160,7 @@ public class DrupalForm
         return true;
     }
 
-    string GetFormBuildId(string html)
+    private static string GetFormBuildId(string html)
     {
         var doc = new HtmlDocument();
         doc.LoadHtml(html);
@@ -168,12 +168,27 @@ public class DrupalForm
         return element.GetAttributeValue("value", "");
     }
 
+    public void Dispose()
+    {
+        Dispose(true);
+        GC.SuppressFinalize(true);
+    }
 
+    protected virtual void Dispose(bool disposing)
+    {
+        if (disposing)
+        {
+            if (client != null)
+            {
+                client.Dispose();
+            }
+        }
+    }
 }
 
-class WebForm
+internal class WebForm
 {
-    List<KeyValuePair<string, string>> parameters = new();
+    private readonly List<KeyValuePair<string, string>> parameters = new();
 
     public void AddParameter(string name, string value)
     {

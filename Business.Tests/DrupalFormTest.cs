@@ -27,9 +27,9 @@ bla bla bla",
             TargetPhoneNumber="0487654321",
             TargetState = State.NSW
         };
-        var submition = await drupalForm.Process(report);
+        var submission = await drupalForm.Process(report);
 
-        Assert.True(submition);
+        Assert.True(submission);
     }
 
     [Fact]
@@ -50,8 +50,8 @@ bla bla bla",
             TargetPhoneNumber = "0487654321",
             TargetState = State.NSW
         };
-        var submition = await drupalForm.Process(report);
+        var submission = await drupalForm.Process(report);
 
-        Assert.True(submition);
+        Assert.True(submission);
     }
 }
