@@ -1,5 +1,6 @@
 ﻿using Business.Models;
 using HtmlAgilityPack;
+using System.Globalization;
 
 namespace Business;
 
@@ -15,19 +16,23 @@ public class DrupalForm
         };
     }
 
-    public async Task Process(Report report)
+    public async Task<bool> Process(Report report)
     {
-        const string FormDataSufix = "Content-Disposition: form-data; ";
-        // Step 0
+
+        #region Step 0
+
         var response0 = await client.GetAsync("report-a-scam");
         if (!response0.IsSuccessStatusCode)
         {
-            return;
+            return false;
         }
         var html0 = await response0.Content.ReadAsStringAsync();
         var formBuildId0 = GetFormBuildId(html0);
 
-        // Step 1
+        #endregion
+
+        #region Step 1
+
         var webForm1 = new WebForm();
         webForm1.AddParameter("form_build_id", formBuildId0);
         webForm1.AddParameter("form_id", "webform_submission_report_a_scam_node_1000_add_form");
@@ -37,36 +42,39 @@ public class DrupalForm
         var response1 = await client.PostAsync("report-a-scam", webForm1.GetContent());
         if (!response1.IsSuccessStatusCode)
         {
-            return;
+            return false;
         }
         var html1 = await response1.Content.ReadAsStringAsync();
         var formBuildId1 = GetFormBuildId(html1);
 
-        // Step 2
+        #endregion
+
+        #region Step 2
+
         var webForm2 = new WebForm();
         webForm2.AddParameter("afcx_scammer_bsb_account_number", "");
         webForm2.AddParameter("afcx_scammer_swift_code", "");
         webForm2.AddParameter("amount_lost", "");
         webForm2.AddParameter("attachments[fids]", "");
-        webForm2.AddParameter("briefly_describe_the_scam", "");
+        webForm2.AddParameter("briefly_describe_the_scam", report.Description);
         webForm2.AddParameter("form_build_id", formBuildId1);
         webForm2.AddParameter("form_id", "webform_submission_report_a_scam_node_1000_add_form");
         webForm2.AddParameter("gift_card_provider", "");
         webForm2.AddParameter("gumtree_ad_id", "");
         webForm2.AddParameter("how_was_the_money_lost[other]", "");
         webForm2.AddParameter("how_was_the_money_lost[select]", "");
-        webForm2.AddParameter("how_were_you_contacted_by_the_scammer", "");
+        webForm2.AddParameter("how_were_you_contacted_by_the_scammer", report.DeliveryMethod.ToString());
         webForm2.AddParameter("moneygram_reference_number", "");
         webForm2.AddParameter("moneygram_transaction_date", "");
         webForm2.AddParameter("name_of_online_dating_site", "");
         webForm2.AddParameter("op", "Next");
         webForm2.AddParameter("payment_provider[other]", "");
         webForm2.AddParameter("payment_provider[select]", "");
-        webForm2.AddParameter("scammer_s_phone_number", "");
+        webForm2.AddParameter("scammer_s_phone_number", report.ScammerPhoneNumber);
         webForm2.AddParameter("scammers_address_1", "");
         webForm2.AddParameter("scammers_address_2", "");
         webForm2.AddParameter("scammers_address_city_suburb", "");
-        webForm2.AddParameter("scammers_address_known", "");
+        webForm2.AddParameter("scammers_address_known", "no");
         webForm2.AddParameter("scammers_address_postcode", "");
         webForm2.AddParameter("scammers_address_state", "");
         webForm2.AddParameter("scammers_email", "");
@@ -75,8 +83,8 @@ public class DrupalForm
         webForm2.AddParameter("scammers_website", "");
         webForm2.AddParameter("western_union_mtcn", "");
         webForm2.AddParameter("western_union_transaction_date", "");
-        webForm2.AddParameter("what_type_of_scam_is_it", "");
-        webForm2.AddParameter("when_were_you_first_contacted", "");
+        webForm2.AddParameter("what_type_of_scam_is_it", $"{(int)report.ScamType}");
+        webForm2.AddParameter("when_were_you_first_contacted", report.FirstContactDate.ToString("dd/MM/yyyy", CultureInfo.InvariantCulture));
         webForm2.AddParameter("which_website_were_you_using[other]", "");
         webForm2.AddParameter("which_website_were_you_using[select]", "");
         webForm2.AddParameter("your_facebook_url", "");
@@ -84,10 +92,12 @@ public class DrupalForm
         var response2 = await client.PostAsync("report-a-scam", webForm2.GetContent());
         if (!response2.IsSuccessStatusCode)
         {
-            return;
+            return false;
         }
         var html2 = await response2.Content.ReadAsStringAsync();
         var formBuildId2 = GetFormBuildId(html2);
+
+        #endregion
 
         // Step 3
         var webForm3 = new WebForm();
@@ -122,7 +132,7 @@ public class DrupalForm
         var response3 = await client.PostAsync("report-a-scam", webForm3.GetContent());
         if (!response3.IsSuccessStatusCode)
         {
-            return;
+            return false;
         }
         var html3 = await response2.Content.ReadAsStringAsync();
         var formBuildId3 = GetFormBuildId(html3);
@@ -132,6 +142,7 @@ public class DrupalForm
 
         var response4 = await client.PostAsync("report-a-scam", webForm4.GetContent());
 
+        return true;
     }
 
     string GetFormBuildId(string html)
