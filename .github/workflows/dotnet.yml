@@ -6,11 +6,18 @@ on:
   pull_request:
     branches: [ master ]
 
+  workflow_dispatch:
+
+env:
+    DOTNETVERSION:  6.0.100-preview.6.21355.2
+    
 jobs:
   buildwindows:
     runs-on: windows-latest
 
     steps:
+    - uses: actions/checkout@v2
+    
     - name: Install Visual Studio Preview
       shell: pwsh
       run: powershell .\build\install-vs.ps1
