@@ -4,11 +4,11 @@ using System.Globalization;
 
 namespace Business.Services;
 
-public class SubmitDrupalFormService
+public class DrupalFormService : IDrupalFormService
 {
     private readonly HttpClient _client;
 
-    public SubmitDrupalFormService(HttpClient client)
+    public DrupalFormService(HttpClient client)
     {
         _client = client;
         _client.BaseAddress = new Uri("https://www.scamwatch.gov.au/");
@@ -180,4 +180,9 @@ internal class WebForm
     {
         return new FormUrlEncodedContent(parameters);
     }
+}
+
+public interface IDrupalFormService
+{
+    Task<bool> Process(Report report);
 }
