@@ -11,10 +11,10 @@ public class Report
 
     public string ScammerPhoneNumber { get; set; }
 
-    public string TargetEmail { get; set; }
     public string TargetFirstName { get; set; }
-    public Gender TargetGender { get; set; }
     public string TargetLastName { get; set; }
+    public string TargetEmail { get; set; }
     public string TargetPhoneNumber { get; set; }
+    public Gender TargetGender { get; set; }
     public State TargetState { get; set; }
 }

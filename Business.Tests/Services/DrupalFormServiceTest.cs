@@ -8,11 +8,11 @@ using Xunit;
 
 namespace Business.Tests.Services;
 
-public class SubmitDrupalFormServiceTest
+public class DrupalFormServiceTest
 {
     private readonly HttpClient _client;
 
-    public SubmitDrupalFormServiceTest()
+    public DrupalFormServiceTest()
     {
         var mockMessageHandler = new Mock<HttpMessageHandler>();
         mockMessageHandler
@@ -24,16 +24,13 @@ public class SubmitDrupalFormServiceTest
                 Content = new StringContent("<html><body><input name='form_build_id' value='form-MfFACf1XpqL-35Ikfi-fmTx-mkgg5n2_cHHvSihP6PU' /></body></html>")
             });
 
-        _client = new HttpClient(mockMessageHandler.Object)
-        {
-            BaseAddress = new Uri("https://www.scamwatch.gov.au/")
-        };
+        _client = new HttpClient(mockMessageHandler.Object);
     }
 
     [Fact]
     public async Task GivenAScamSMS_SubmitAReport()
     {
-        var drupalForm = new SubmitDrupalFormService(_client);
+        var drupalForm = new DrupalFormService(_client);
         var report = new Report
         {
             ScamType = ScamType.IdentityTheft,
@@ -59,7 +56,7 @@ bla bla bla",
     [Fact]
     public async Task GivenAScamCall_SubmitAReport()
     {
-        var drupalForm = new SubmitDrupalFormService(_client);
+        var drupalForm = new DrupalFormService(_client);
         var report = new Report
         {
             ScamType = ScamType.IdentityTheft,

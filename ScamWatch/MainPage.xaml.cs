@@ -10,11 +10,10 @@ namespace ScamWatch
 			InitializeComponent();
 		}
 
-		int count = 0;
-		private void OnCounterClicked(object sender, EventArgs e)
+
+		private void OnSubmitReportClicked(object sender, EventArgs e)
 		{
-			count++;
-			CounterLabel.Text = $"Current count: {count}";
+
 		}
 	}
 }
