@@ -11,7 +11,7 @@ public class SubmitDrupalFormService
     public SubmitDrupalFormService(HttpClient client)
     {
         _client = client;
-        
+        _client.BaseAddress = new Uri("https://www.scamwatch.gov.au/");
     }
 
     public async Task<bool> Process(Report report)

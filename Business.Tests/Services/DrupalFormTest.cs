@@ -24,10 +24,7 @@ public class SubmitDrupalFormServiceTest
                 Content = new StringContent("<html><body><input name='form_build_id' value='form-MfFACf1XpqL-35Ikfi-fmTx-mkgg5n2_cHHvSihP6PU' /></body></html>")
             });
 
-        _client = new HttpClient(mockMessageHandler.Object)
-        {
-            BaseAddress = new Uri("https://www.scamwatch.gov.au/")
-        };
+        _client = new HttpClient(mockMessageHandler.Object);
     }
 
     [Fact]
