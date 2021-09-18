@@ -20,7 +20,7 @@ jobs:
     
     - name: Install Visual Studio Preview
       shell: pwsh
-      run: powershell .\build\install-vs.ps1
+      run: powershell .\.github\build\install-vs.ps1
         
     - name: Add msbuild to PATH
       shell: pwsh
