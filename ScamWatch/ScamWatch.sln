@@ -3,7 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.0.31710.8
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ScamWatch", "ScamWatch\ScamWatch.csproj", "{AE9B03EE-4814-40AE-9D0E-F5947C5F8BAD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ScamWatch", "ScamWatch\ScamWatch.csproj", "{AE9B03EE-4814-40AE-9D0E-F5947C5F8BAD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Business", "Business\Business.csproj", "{B005FBC3-4B46-42F6-902D-D46459874FA6}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Business.Tests", "Business.Tests\Business.Tests.csproj", "{227590E3-236F-47BC-BB11-CF5F37DBC210}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -17,6 +21,14 @@ Global
 		{AE9B03EE-4814-40AE-9D0E-F5947C5F8BAD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{AE9B03EE-4814-40AE-9D0E-F5947C5F8BAD}.Release|Any CPU.Build.0 = Release|Any CPU
 		{AE9B03EE-4814-40AE-9D0E-F5947C5F8BAD}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{B005FBC3-4B46-42F6-902D-D46459874FA6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B005FBC3-4B46-42F6-902D-D46459874FA6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B005FBC3-4B46-42F6-902D-D46459874FA6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B005FBC3-4B46-42F6-902D-D46459874FA6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{227590E3-236F-47BC-BB11-CF5F37DBC210}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{227590E3-236F-47BC-BB11-CF5F37DBC210}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{227590E3-236F-47BC-BB11-CF5F37DBC210}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{227590E3-236F-47BC-BB11-CF5F37DBC210}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
