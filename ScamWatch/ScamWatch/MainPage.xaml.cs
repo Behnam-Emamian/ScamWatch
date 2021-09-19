@@ -1,8 +1,8 @@
 ﻿using Business.Services;
-using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Maui.Controls;
 using Microsoft.Maui.Essentials;
 using System;
+using Business.Services;
 
 namespace ScamWatch
 {
@@ -12,7 +12,7 @@ namespace ScamWatch
 
         public MainPage()
         {
-            //_drupalFormService = ServiceProvider.GetService<IDrupalFormService>();
+            _drupalFormService = ServiceProvider.GetService<IDrupalFormService>();
 
             InitializeComponent();
         }
