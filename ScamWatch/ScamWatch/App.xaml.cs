@@ -10,7 +10,7 @@ namespace ScamWatch
         public App()
         {
             InitializeComponent();
-
+            
             MainPage = new MainPage();
         }
     }

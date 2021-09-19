@@ -1,7 +1,9 @@
-﻿using Microsoft.Maui;
-using Microsoft.Maui.Controls.Compatibility;
+﻿using Business.Services;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Maui;
 using Microsoft.Maui.Controls.Hosting;
 using Microsoft.Maui.Hosting;
+using System.Net.Http;
 
 namespace ScamWatch
 {
@@ -16,6 +18,9 @@ namespace ScamWatch
                 {
                     fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
                 });
+
+            builder.Services.AddSingleton<HttpClient, HttpClient>();
+            builder.Services.AddSingleton<IDrupalFormService, DrupalFormService>();
 
             return builder.Build();
         }

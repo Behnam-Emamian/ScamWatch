@@ -1,4 +1,6 @@
-﻿using Microsoft.Maui.Controls;
+﻿using Business.Services;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Maui.Controls;
 using Microsoft.Maui.Essentials;
 using System;
 
@@ -6,19 +8,18 @@ namespace ScamWatch
 {
     public partial class MainPage : ContentPage
     {
-        int count = 0;
+        private readonly IDrupalFormService _drupalFormService;
 
         public MainPage()
         {
+            //_drupalFormService = ServiceProvider.GetService<IDrupalFormService>();
+
             InitializeComponent();
         }
 
-        private void OnCounterClicked(object sender, EventArgs e)
+        private void OnSubmitReportClicked(object sender, EventArgs e)
         {
-            count++;
-            CounterLabel.Text = $"Current count: {count}";
 
-            SemanticScreenReader.Announce(CounterLabel.Text);
         }
     }
 }
