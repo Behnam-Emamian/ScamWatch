@@ -1,58 +1,150 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:enums="clr-namespace:Business.Enums;assembly=Business"
              x:Class="ScamWatch.MainPage"
              BackgroundColor="{DynamicResource SecondaryColor}">
 
     <ScrollView Padding="{OnPlatform iOS='30,60,30,30', Default='30'}">
-        <Grid RowSpacing="25" RowDefinitions="Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto,*">
-
-            <Label Text="Report a scam to ScamWatch"
+        <Grid RowSpacing="25" BackgroundColor="#FF16394F" ColumnDefinitions="Auto,Auto" RowDefinitions="Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto,*">
+            <Label TextColor="White" Text="Report a scam to ScamWatch"
                 Grid.Row="0"
+                GridLayout.ColumnSpan="2"
                 FontSize="20"
+                Margin="5,10,0,0"
                 HorizontalOptions="CenterAndExpand" />
 
-            <Label Text="Scammer's phone number"
+            <Label TextColor="White" Text="Scammer's phone number"
                 Grid.Row="1"
+                GridLayout.Column="0"  
                 FontSize="16"
-                HorizontalOptions="CenterAndExpand" />
+                Margin="10,10,0,0"
+                VerticalOptions="Start"
+                HorizontalOptions="StartAndExpand" />
 
-            <Label Text="Description"
+            <Entry  GridLayout.Row="1"
+                    GridLayout.Column="1"
+                    FontSize="16"
+                    VerticalOptions="Start"
+                    WidthRequest="100"
+                    HorizontalOptions="CenterAndExpand"/>
+
+            <Label TextColor="White" Text="Description"
                 Grid.Row="2"
+                GridLayout.Column="0"
                 FontSize="16"
-                HorizontalOptions="CenterAndExpand" />
+                 Margin="10,0,0,0"
+                VerticalOptions="Start"   
+                HorizontalOptions="StartAndExpand" />
 
-            <Label Text="First name"
+            <Entry Grid.Row="2"
+                GridLayout.Column="1"        
+                TextColor="White"
+                VerticalOptions="Start"
+                WidthRequest="100"   
+                HorizontalOptions="StartAndExpand" />
+
+            <Label TextColor="White" Text="First name"
                 Grid.Row="3"
+                GridLayout.Column="0"
+                 Margin="10,0,0,0"
+                VerticalOptions="Start"   
                 FontSize="16"
-                HorizontalOptions="CenterAndExpand" />
+                HorizontalOptions="StartAndExpand" />
 
-            <Label Text="Last name"
+            <Entry Grid.Row="3"
+                GridLayout.Column="1"
+                FontSize="16"   
+                VerticalOptions="Start" 
+                WidthRequest="100"   
+                HorizontalOptions="StartAndExpand"/>
+
+            <Label TextColor="White" Text="Last name"
                 Grid.Row="4"
+                GridLayout.Column="0"
                 FontSize="16"
-                HorizontalOptions="CenterAndExpand" />
+                 Margin="10,0,0,0"   
+                VerticalOptions="Start"   
+                HorizontalOptions="StartAndExpand" />
 
-            <Label Text="Email"
+            <Entry Grid.Row="4"
+                   GridLayout.Column="1"
+                   FontSize="16"
+                   VerticalOptions="Start"
+                   WidthRequest="100"
+                   HorizontalOptions="StartAndExpand"/>
+
+            <Label TextColor="White" Text="Email"
                 Grid.Row="5"
+                GridLayout.Column="0"
                 FontSize="16"
-                HorizontalOptions="CenterAndExpand" />
+                 Margin="10,0,0,0"   
+                VerticalOptions="Start"   
+                HorizontalOptions="StartAndExpand" />
 
-            <Label Text="Phone Number"
+            <Entry Grid.Row="5"
+                GridLayout.Column="1"
+                FontSize="16"
+                VerticalOptions="Start"
+                WidthRequest="100"   
+                HorizontalOptions="StartAndExpand"/>
+
+            <Label TextColor="White" Text="Phone Number"
                 Grid.Row="6"
+                GridLayout.Column="0"
                 FontSize="16"
-                HorizontalOptions="CenterAndExpand" />
+                 Margin="10,0,0,0"   
+                VerticalOptions="Start"   
+                HorizontalOptions="StartAndExpand" />
 
-            <Label Text="Gender"
+            <Entry Grid.Row="6"
+                   GridLayout.Column="1"
+                   FontSize="16"
+                   VerticalOptions="Start"
+                   WidthRequest="100"
+                   HorizontalOptions="StartAndExpand"/>
+
+            <Label TextColor="White" Text="Gender"
                 Grid.Row="7"
+                GridLayout.Column="0"
                 FontSize="16"
-                HorizontalOptions="CenterAndExpand" />
+                Margin="10,0,0,0"   
+                VerticalOptions="Start"   
+                HorizontalOptions="StartAndExpand" />
 
-            <Label Text="State"
+            <Picker  GridLayout.Row="7"
+                     GridLayout.Column="1"
+                     x:Name="Gender" 
+                    x:DataType="enums:Gender" 
+                    VerticalOptions="Start"
+                    HeightRequest="44"
+                    WidthRequest="120"
+                    HorizontalOptions="StartAndExpand"
+                    FontSize="16"
+                    />
+
+            <Label TextColor="White" Text="State"
                 Grid.Row="8"
+                GridLayout.Column="0"
                 FontSize="16"
-                HorizontalOptions="CenterAndExpand" />
+                Margin="10,0,0,0"   
+                VerticalOptions="Start"   
+                HorizontalOptions="StartAndExpand" />
 
-            <Button Text="Submit Report"
-                Grid.Row="9"
+            <Picker GridLayout.Row="8"
+                    GridLayout.Column="1"
+                    x:Name="state"
+                    x:DataType="enums:State"
+                    Title="Select a state"
+                    HeightRequest="44"
+                    WidthRequest="120"
+                    TitleColor="White" 
+                    SelectedItem=""
+                    ItemsSource="{Binding Source=State }">
+            </Picker>
+
+            <Button  TextColor="White" Margin="0,0,0,20" Text="Submit Report"
+                Grid.Row="11"
+                GridLayout.ColumnSpan="2"   
                 Clicked="OnSubmitReportClicked"
                 HorizontalOptions="Center" />
 
