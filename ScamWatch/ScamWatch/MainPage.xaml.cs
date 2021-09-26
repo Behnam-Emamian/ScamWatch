@@ -1,8 +1,6 @@
 ﻿using Business.Services;
 using Microsoft.Maui.Controls;
-using Microsoft.Maui.Essentials;
 using System;
-using Business.Services;
 
 namespace ScamWatch
 {
