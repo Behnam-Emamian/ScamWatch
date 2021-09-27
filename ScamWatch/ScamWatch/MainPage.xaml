@@ -1,61 +1,197 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:enums="clr-namespace:Business.Enums;assembly=Business"
              x:Class="ScamWatch.MainPage"
              BackgroundColor="{DynamicResource SecondaryColor}">
 
     <ScrollView Padding="{OnPlatform iOS='30,60,30,30', Default='30'}">
-        <Grid RowSpacing="25" RowDefinitions="Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto,*">
+        <StackLayout Orientation="Vertical" >
 
-            <Label Text="Report a scam to ScamWatch"
-                Grid.Row="0"
-                FontSize="20"
-                HorizontalOptions="CenterAndExpand" />
+            <Frame Margin="10" CornerRadius="5" BackgroundColor="#FF16394F" Padding="5">
+                
+                <Label HeightRequest="50" TextColor="White"
+                       HorizontalOptions="Center"
+                       VerticalOptions="Center"
+                       Padding="8"
+                       Text="Report a scam to ScamWatch"
+                       FontSize="20"/>
+              
+            </Frame>
 
-            <Label Text="Scammer's phone number"
-                Grid.Row="1"
-                FontSize="16"
-                HorizontalOptions="CenterAndExpand" />
+            <Frame HeightRequest="140" Margin="10" BackgroundColor="#FF16394F"  BorderColor="Gray" CornerRadius="5" Padding="8">
 
-            <Label Text="Description"
-                Grid.Row="2"
-                FontSize="16"
-                HorizontalOptions="CenterAndExpand" />
+                <StackLayout Orientation="Vertical">
 
-            <Label Text="First name"
-                Grid.Row="3"
-                FontSize="16"
-                HorizontalOptions="CenterAndExpand" />
+                    <Label TextColor="White" Text="Scammer :"
+                           FontSize="Medium"
+                           FontAttributes="Bold" />
 
-            <Label Text="Last name"
-                Grid.Row="4"
-                FontSize="16"
-                HorizontalOptions="CenterAndExpand" />
+                    <BoxView Color="Gray" HeightRequest="2" HorizontalOptions="Fill" />
 
-            <Label Text="Email"
-                Grid.Row="5"
-                FontSize="16"
-                HorizontalOptions="CenterAndExpand" />
+                    <StackLayout Orientation="Horizontal">
+                        
+                        <Label TextColor="White" Text="Phone number"
+                               HorizontalOptions="StartAndExpand"
+                               VerticalOptions="Center"
+                               FontSize="16"
+                               Margin="10,25,0,0"/>
 
-            <Label Text="Phone Number"
-                Grid.Row="6"
-                FontSize="16"
-                HorizontalOptions="CenterAndExpand" />
+                        <Entry  PlaceholderColor="White" FontSize="16"
+                                HorizontalOptions="EndAndExpand"
+                                VerticalOptions="Center"
+                                WidthRequest="200"
+                                Margin="10,0,0,0"
+                                TextColor="White"/>
+                        
+                    </StackLayout>
+                   
+                    <StackLayout Orientation="Horizontal">
 
-            <Label Text="Gender"
-                Grid.Row="7"
-                FontSize="16"
-                HorizontalOptions="CenterAndExpand" />
+                        <Label TextColor="White" Text="Description"
+                               FontSize="16"
+                               Margin="10,0,0,0"
+                               VerticalOptions="Center"   
+                               HorizontalOptions="StartAndExpand" />
 
-            <Label Text="State"
-                Grid.Row="8"
-                FontSize="16"
-                HorizontalOptions="CenterAndExpand" />
+                        <Entry TextColor="White" FontSize="16"
+                               VerticalOptions="Center"
+                               Margin="10,0,0,0"
+                               WidthRequest="200"   
+                               HorizontalOptions="StartAndExpand" />
+                        
+                    </StackLayout>
 
-            <Button Text="Submit Report"
-                Grid.Row="9"
-                Clicked="OnSubmitReportClicked"
-                HorizontalOptions="Center" />
+                </StackLayout>
 
-        </Grid>
+            </Frame>
+            <Frame HeightRequest="550" Margin="10"  BackgroundColor="#FF16394F" CornerRadius="5" Padding="8">
+                <StackLayout Orientation="Vertical">
+                    
+                    <Label TextColor="White" Text="Target :" 
+                           FontSize="Medium"
+                           FontAttributes="Bold" />
+
+                    <BoxView Color="Gray" HeightRequest="2" HorizontalOptions="Fill" />
+
+                    <Grid RowSpacing="25" ColumnDefinitions="Auto,Auto" RowDefinitions="Auto,Auto,Auto,Auto,Auto,Auto,Auto,*">
+                        
+                        <Label TextColor="White" Text="First name"
+                               Grid.Row="0"
+                               GridLayout.Column="0"
+                               VerticalOptions="Center"   
+                               FontSize="16"
+                               Margin="10,0,0,0"  
+                               HorizontalOptions="StartAndExpand" />
+
+                        <Entry Grid.Row="0" GridLayout.Column="1"
+                               FontSize="16"   
+                               VerticalOptions="Center" 
+                               WidthRequest="200"   
+                               x:Name="firstName"
+                               TextColor="White"
+                               HorizontalOptions="StartAndExpand"/>
+
+                        <Label TextColor="White" Text="Last name"
+                               Grid.Row="1"
+                               GridLayout.Column="0"
+                               FontSize="16"
+                               VerticalOptions="Center"  
+                               LineBreakMode="NoWrap"
+                               Margin="10,0,0,0"  
+                               HorizontalOptions="StartAndExpand" />
+
+                        <Entry Grid.Row="1" GridLayout.Column="1"
+                               FontSize="16"
+                               VerticalOptions="Center"
+                               WidthRequest="200"
+                               x:Name="lastName"
+                               TextColor="White"
+                               HorizontalOptions="StartAndExpand"/>
+
+                        <Label TextColor="White" Text="Email"
+                               Grid.Row="2"
+                               GridLayout.Column="0"
+                               FontSize="16"
+                               Margin="10,0,0,0"   
+                               HorizontalOptions="StartAndExpand"
+                               VerticalOptions="Center"/>
+
+                        <Entry Grid.Row="2"  GridLayout.Column="1"
+                               FontSize="16"
+                               VerticalOptions="Center"
+                               WidthRequest="200"   
+                               x:Name="email"
+                               TextColor="White"
+                               HorizontalOptions="StartAndExpand"/>
+
+                        <Label TextColor="White" Text="Phone number"
+                               Grid.Row="3"
+                               GridLayout.Column="0"
+                               FontSize="16"
+                               VerticalOptions="Start"  
+                               GridLayout.RowSpan="2"
+                               Margin="10,0,0,0"  
+                               HorizontalOptions="StartAndExpand" />
+
+                        <Entry Grid.Row="3" GridLayout.Column="1"
+                               FontSize="16"
+                               VerticalOptions="Center"
+                               WidthRequest="200"
+                               x:Name="phoneNumber"
+                               TextColor="White"
+                               HorizontalOptions="StartAndExpand"/>
+
+                        <Label TextColor="White" Text="Gender"
+                              Grid.Row="4"
+                              GridLayout.Column="0"
+                              FontSize="16"
+                              Margin="10,0,0,0"   
+                              VerticalOptions="Center"   
+                              HorizontalOptions="StartAndExpand" />
+
+                        <Picker  GridLayout.Row="4" GridLayout.Column="1"
+                                 x:Name="gender" 
+                                 x:DataType="enums:Gender" 
+                                 VerticalOptions="Center"
+                                 WidthRequest="200"
+                                 Title="select a gender"
+                                 TitleColor="White"
+                                 HorizontalOptions="StartAndExpand"
+                                 FontSize="16" />
+
+                        <Label TextColor="White" Text="State"
+                               Grid.Row="5"
+                               GridLayout.Column="0"
+                               FontSize="16"
+                               Margin="10,0,0,0"   
+                               VerticalOptions="Start"   
+                                HorizontalOptions="StartAndExpand" />
+
+                        <Picker GridLayout.Row="5" GridLayout.Column="1"
+                                x:Name="state"
+                                x:DataType="enums:State"
+                                Title="Select a state"
+                                WidthRequest="200"
+                                TitleColor="White" 
+                                SelectedItem=""
+                                ItemsSource="{Binding Source=State }"/>
+                  
+                     </Grid>
+               
+                </StackLayout>
+
+            </Frame>
+            
+            <Frame HeightRequest="60"   Margin="10" BackgroundColor="#FF16394F" CornerRadius="5" Padding="10">
+                
+                <Button  TextColor="White"  Text="Submit Report"  
+                         Clicked="OnSubmitReportClicked"
+                         BackgroundColor="#000066"
+                         VerticalOptions="Center"
+                         CornerRadius="20"
+                         HorizontalOptions="Center" />
+                
+            </Frame>
+        </StackLayout>
     </ScrollView>
 </ContentPage>
