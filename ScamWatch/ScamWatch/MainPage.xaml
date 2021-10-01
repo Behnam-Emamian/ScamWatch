@@ -41,6 +41,10 @@
                                 VerticalOptions="Center"
                                 WidthRequest="200"
                                 Margin="10,0,0,0"
+                                IsTextPredictionEnabled="True"
+                                IsSpellCheckEnabled ="True"
+                                FlexLayout.
+                                x:Name="scramPhoneNumber"
                                 TextColor="White"/>
                         
                     </StackLayout>
@@ -56,7 +60,8 @@
                         <Entry TextColor="White" FontSize="16"
                                VerticalOptions="Center"
                                Margin="10,0,0,0"
-                               WidthRequest="200"   
+                               WidthRequest="200"
+                               x:Name="description"
                                HorizontalOptions="StartAndExpand" />
                         
                     </StackLayout>
@@ -157,6 +162,7 @@
                                  WidthRequest="200"
                                  Title="select a gender"
                                  TitleColor="White"
+                                 TextColor="Wheat"
                                  HorizontalOptions="StartAndExpand"
                                  FontSize="16" />
 
@@ -174,7 +180,7 @@
                                 Title="Select a state"
                                 WidthRequest="200"
                                 TitleColor="White" 
-                                SelectedItem=""
+                                TextColor="White"
                                 ItemsSource="{Binding Source=State }"/>
                   
                      </Grid>

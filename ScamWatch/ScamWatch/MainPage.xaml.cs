@@ -1,4 +1,6 @@
-﻿using Business.Services;
+﻿using Business.Enums;
+using Business.Models;
+using Business.Services;
 using Microsoft.Maui.Controls;
 using Microsoft.Maui.Essentials;
 using System;
@@ -18,19 +20,45 @@ namespace ScamWatch
 
         protected override async void OnAppearing()
         {
-            this.firstName.Text = await SecureStorage.GetAsync("FirstName");
-            this.lastName.Text = await SecureStorage.GetAsync("LastName");
-            this.email.Text = await SecureStorage.GetAsync("Email");
-            this.phoneNumber.Text = await SecureStorage.GetAsync("PhoneNumber"); ;
+            gender.ItemsSource = Enum.GetValues(typeof(Gender));
+            state.ItemsSource = Enum.GetValues(typeof(State));
+
+            firstName.Text = await SecureStorage.GetAsync("FirstName");
+            lastName.Text = await SecureStorage.GetAsync("LastName");
+            email.Text = await SecureStorage.GetAsync("Email");
+            phoneNumber.Text = await SecureStorage.GetAsync("PhoneNumber");
+
+            state.SelectedItem = (State)Enum.Parse(typeof(State), await SecureStorage.GetAsync("State"));
+            gender.SelectedItem = (Gender)Enum.Parse(typeof(Gender), await SecureStorage.GetAsync("Gender"));
         }
-        private void OnSubmitReportClicked(object sender, EventArgs e)
+
+        private async void OnSubmitReportClicked(object sender, EventArgs e)
         {
-            SecureStorage.SetAsync("FirstName", this.firstName.Text);
-            SecureStorage.SetAsync("lastName", this.lastName.Text);
-            SecureStorage.SetAsync("Email", this.email.Text);
-            SecureStorage.SetAsync("PhoneNumber", this.phoneNumber.Text);
-            SecureStorage.SetAsync("Gender", this.gender.Title);
-            SecureStorage.SetAsync("State", this.state.Title);
+            await SecureStorage.SetAsync("FirstName", firstName.Text);
+            await SecureStorage.SetAsync("lastName", lastName.Text);
+            await SecureStorage.SetAsync("Email", email.Text);
+            await SecureStorage.SetAsync("PhoneNumber", phoneNumber.Text);
+
+            await SecureStorage.SetAsync("Gender", gender.SelectedItem.ToString());
+            await SecureStorage.SetAsync("State", state.SelectedItem.ToString());
+
+            var result = await _drupalFormService.Process(new Report
+            {
+                ScamType = ScamType.IdentityTheft,
+                DeliveryMethod = DeliveryMethod.text_message,
+                FirstContactDate = DateOnly.FromDateTime(DateTime.Now),
+                Description = description.Text,
+                ScammerPhoneNumber = scramPhoneNumber.Text,
+                TargetEmail = await SecureStorage.GetAsync("Email"),
+                TargetFirstName = await SecureStorage.GetAsync("FirstName"),
+                TargetGender = (Gender)Enum.Parse(typeof(Gender), await SecureStorage.GetAsync("Gender")),
+                TargetLastName = await SecureStorage.GetAsync("LastName"),
+                TargetPhoneNumber = await SecureStorage.GetAsync("PhoneNumber"),
+                TargetState = (State)Enum.Parse(typeof(State), await SecureStorage.GetAsync("State"))
+            });
+
+            if (result)
+                await DisplayAlert("Successful", "The report sent", "Ok");
         }
     }
 }
