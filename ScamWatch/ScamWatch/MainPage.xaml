@@ -7,7 +7,7 @@
     <ScrollView Padding="{OnPlatform iOS='30,60,30,30', Default='30'}">
         <StackLayout Orientation="Vertical" >
 
-            <Frame Margin="10" CornerRadius="5" BackgroundColor="#FF16394F" Padding="5">
+            <Frame Margin="5" CornerRadius="5" BackgroundColor="#FF16394F" Padding="5">
                 
                 <Label HeightRequest="50" TextColor="White"
                        HorizontalOptions="Center"
@@ -18,7 +18,7 @@
               
             </Frame>
 
-            <Frame HeightRequest="140" Margin="10" BackgroundColor="#FF16394F"  BorderColor="Gray" CornerRadius="5" Padding="8">
+            <Frame HeightRequest="140" Margin="5" BackgroundColor="#FF16394F"  BorderColor="Gray" CornerRadius="5" Padding="8">
 
                 <StackLayout Orientation="Vertical">
 
@@ -64,7 +64,7 @@
                 </StackLayout>
 
             </Frame>
-            <Frame HeightRequest="550" Margin="10"  BackgroundColor="#FF16394F" CornerRadius="5" Padding="8">
+            <Frame HeightRequest="550" Margin="5"  BackgroundColor="#FF16394F" CornerRadius="5" Padding="8">
                 <StackLayout Orientation="Vertical">
                     
                     <Label TextColor="White" Text="Target :" 
@@ -89,6 +89,7 @@
                                WidthRequest="200"   
                                x:Name="firstName"
                                TextColor="White"
+                               VerticalTextAlignment="Start"
                                HorizontalOptions="StartAndExpand"/>
 
                         <Label TextColor="White" Text="Last name"
@@ -182,7 +183,7 @@
 
             </Frame>
             
-            <Frame HeightRequest="60"   Margin="10" BackgroundColor="#FF16394F" CornerRadius="5" Padding="10">
+            <Frame HeightRequest="60"   Margin="5" BackgroundColor="#FF16394F" CornerRadius="5" Padding="10">
                 
                 <Button  TextColor="White"  Text="Submit Report"  
                          Clicked="OnSubmitReportClicked"
