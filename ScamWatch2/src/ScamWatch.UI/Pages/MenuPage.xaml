@@ -1,0 +1,54 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<views:MvxContentPage
+    x:Class="ScamWatch.UI.Pages.MenuPage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:behaviors="clr-namespace:ScamWatch.Core.Behaviors;assembly=ScamWatch.Core"
+    xmlns:viewModels="clr-namespace:ScamWatch.Core.ViewModels.Menu;assembly=ScamWatch.Core"
+    xmlns:views="clr-namespace:MvvmCross.Forms.Views;assembly=MvvmCross.Forms"
+    x:Name="MainContent"
+    x:TypeArguments="viewModels:MenuViewModel"
+    Icon="hamburger.png">
+    <ContentPage.Content>
+        <StackLayout>
+            <StackLayout HeightRequest="40">
+                <StackLayout.IsVisible>
+                    <OnPlatform x:TypeArguments="x:Boolean">
+                        <On Platform="Android, iOS" Value="True" />
+                        <On Platform="UWP" Value="False" />
+                    </OnPlatform>
+                </StackLayout.IsVisible>
+                <StackLayout.Margin>
+                    <OnPlatform x:TypeArguments="Thickness">
+                        <On Platform="iOS" Value="0,20,0,0" />
+                    </OnPlatform>
+                </StackLayout.Margin>
+                <Label
+                    Margin="10"
+                    FontSize="Large"
+                    Text="NavigationMenu"
+                    VerticalOptions="Center" />
+            </StackLayout>
+            <ListView
+                x:Name="MenuList"
+                ItemsSource="{Binding MenuItemList}"
+                SelectedItem="{Binding SelectedMenuItem, Mode=TwoWay}">
+                <ListView.Behaviors>
+                    <behaviors:EventToCommandBehavior Command="{Binding BindingContext.DataContext.ShowDetailPageAsyncCommand, Source={x:Reference MainContent}}" EventName="ItemSelected" />
+                </ListView.Behaviors>
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <StackLayout HeightRequest="50">
+                                <Label
+                                    Margin="20,0,0,0"
+                                    Text="{Binding}"
+                                    VerticalOptions="CenterAndExpand" />
+                            </StackLayout>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </StackLayout>
+    </ContentPage.Content>
+</views:MvxContentPage>

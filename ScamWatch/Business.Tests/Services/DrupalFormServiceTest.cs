@@ -28,7 +28,8 @@ public class DrupalFormServiceTest
                 Content = new StringContent("<html><body><input name='form_build_id' value='form-MfFACf1XpqL-35Ikfi-fmTx-mkgg5n2_cHHvSihP6PU' /></body></html>")
             });
 
-        _client = new HttpClient(mockMessageHandler.Object);
+        //_client = new HttpClient(mockMessageHandler.Object);
+        _client = new HttpClient();
     }
 
     [Fact]
@@ -52,7 +53,21 @@ bla bla bla",
             TargetPhoneNumber = "0487654321",
             TargetState = State.NSW
         };
-        var submission = await drupalForm.Process(report);
+        var report2 = new Report
+        {
+            ScamType = ScamType.IdentityTheft,
+            DeliveryMethod = DeliveryMethod.phone,
+            FirstContactDate = DateOnly.FromDateTime(DateTime.Now),
+            Description = @"I have received a call trying to get my infomation",
+            ScammerPhoneNumber = "0482707695",
+            TargetEmail = "ben@ictace.com",
+            TargetFirstName = "Behnam",
+            TargetGender = Gender.male,
+            TargetLastName = "Emamian",
+            TargetPhoneNumber = "0488812388",
+            TargetState = State.NSW
+        };
+        var submission = await drupalForm.Process(report2);
 
         Assert.True(submission);
     }

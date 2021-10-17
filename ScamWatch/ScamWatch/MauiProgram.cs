@@ -12,15 +12,15 @@ namespace ScamWatch
         public static MauiApp CreateMauiApp()
         {
             var builder = MauiApp.CreateBuilder();
-            builder
+            _ = builder
                 .UseMauiApp<App>()
                 .ConfigureFonts(fonts =>
                 {
-                    fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
+                    _ = fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
                 });
 
-            builder.Services.AddSingleton<HttpClient, HttpClient>();
-            builder.Services.AddSingleton<IDrupalFormService, DrupalFormService>();
+            _ = builder.Services.AddSingleton<HttpClient, HttpClient>();
+            _ = builder.Services.AddSingleton<IDrupalFormService, DrupalFormService>();
 
             return builder.Build();
         }

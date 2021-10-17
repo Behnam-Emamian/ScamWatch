@@ -8,14 +8,14 @@
         <StackLayout Orientation="Vertical" >
 
             <Frame Margin="10" CornerRadius="5" BackgroundColor="#FF16394F" Padding="5">
-                
+
                 <Label HeightRequest="50" TextColor="White"
                        HorizontalOptions="Center"
                        VerticalOptions="Center"
                        Padding="8"
                        Text="Report a scam to ScamWatch"
                        FontSize="20"/>
-              
+
             </Frame>
 
             <Frame HeightRequest="140" Margin="10" BackgroundColor="#FF16394F"  BorderColor="Gray" CornerRadius="5" Padding="8">
@@ -29,7 +29,7 @@
                     <BoxView Color="Gray" HeightRequest="2" HorizontalOptions="Fill" />
 
                     <StackLayout Orientation="Horizontal">
-                        
+
                         <Label TextColor="White" Text="Phone number"
                                HorizontalOptions="StartAndExpand"
                                VerticalOptions="Center"
@@ -42,9 +42,9 @@
                                 WidthRequest="200"
                                 Margin="10,0,0,0"
                                 TextColor="White"/>
-                        
+
                     </StackLayout>
-                   
+
                     <StackLayout Orientation="Horizontal">
 
                         <Label TextColor="White" Text="Description"
@@ -58,7 +58,7 @@
                                Margin="10,0,0,0"
                                WidthRequest="200"   
                                HorizontalOptions="StartAndExpand" />
-                        
+
                     </StackLayout>
 
                 </StackLayout>
@@ -66,7 +66,7 @@
             </Frame>
             <Frame HeightRequest="550" Margin="10"  BackgroundColor="#FF16394F" CornerRadius="5" Padding="8">
                 <StackLayout Orientation="Vertical">
-                    
+
                     <Label TextColor="White" Text="Target :" 
                            FontSize="Medium"
                            FontAttributes="Bold" />
@@ -74,7 +74,7 @@
                     <BoxView Color="Gray" HeightRequest="2" HorizontalOptions="Fill" />
 
                     <Grid RowSpacing="25" ColumnDefinitions="Auto,Auto" RowDefinitions="Auto,Auto,Auto,Auto,Auto,Auto,Auto,*">
-                        
+
                         <Label TextColor="White" Text="First name"
                                Grid.Row="0"
                                GridLayout.Column="0"
@@ -175,22 +175,22 @@
                                 TitleColor="White" 
                                 SelectedItem=""
                                 ItemsSource="{Binding Source=State }"/>
-                  
-                     </Grid>
-               
+
+                    </Grid>
+
                 </StackLayout>
 
             </Frame>
-            
-            <Frame HeightRequest="60"   Margin="10" BackgroundColor="#FF16394F" CornerRadius="5" Padding="10">
-                
+
+            <Frame HeightRequest="60" Margin="10" BackgroundColor="#FF16394F" CornerRadius="5" Padding="10">
+
                 <Button  TextColor="White"  Text="Submit Report"  
                          Clicked="OnSubmitReportClicked"
                          BackgroundColor="#000066"
                          VerticalOptions="Center"
                          CornerRadius="20"
                          HorizontalOptions="Center" />
-                
+
             </Frame>
         </StackLayout>
     </ScrollView>

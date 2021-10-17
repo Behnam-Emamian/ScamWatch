@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Net.Http;
+using System.Net.Http.Headers;
 using System.Threading.Tasks;
 
 namespace Business.Services;
@@ -16,6 +17,34 @@ public class DrupalFormService : IDrupalFormService
     {
         _client = client;
         _client.BaseAddress = new Uri("https://www.scamwatch.gov.au/");
+
+        _client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("text/html"));
+        _client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/xhtml+xml"));
+        _client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/xml", 0.9));
+        _client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("image/avif"));
+        _client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("image/webp"));
+        _client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("image/apng"));
+        _client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("*/*", 0.8));
+        var signedExchange = new MediaTypeWithQualityHeaderValue("application/signed-exchange", 0.9);
+        signedExchange.Parameters.Add(new NameValueHeaderValue("v", "b3"));
+        _client.DefaultRequestHeaders.Accept.Add(signedExchange);
+
+        //_client.DefaultRequestHeaders.AcceptEncoding.Add(new StringWithQualityHeaderValue("gzip"));
+        //_client.DefaultRequestHeaders.AcceptEncoding.Add(new StringWithQualityHeaderValue("deflate"));
+        //_client.DefaultRequestHeaders.AcceptEncoding.Add(new StringWithQualityHeaderValue("br"));
+
+        _client.DefaultRequestHeaders.AcceptLanguage.Add(new StringWithQualityHeaderValue("en-US"));
+        _client.DefaultRequestHeaders.AcceptLanguage.Add(new StringWithQualityHeaderValue("en", 0.9));
+
+        _client.DefaultRequestHeaders.UserAgent.Add(new ProductInfoHeaderValue("Mozilla", "5.0"));
+        _client.DefaultRequestHeaders.UserAgent.Add(new ProductInfoHeaderValue("(Windows NT 10.0; Win64; x64)"));
+        _client.DefaultRequestHeaders.UserAgent.Add(new ProductInfoHeaderValue("AppleWebKit", "537.36"));
+        _client.DefaultRequestHeaders.UserAgent.Add(new ProductInfoHeaderValue("(KHTML, like Gecko)"));
+        _client.DefaultRequestHeaders.UserAgent.Add(new ProductInfoHeaderValue("Chrome", "96.0.4655.0"));
+        _client.DefaultRequestHeaders.UserAgent.Add(new ProductInfoHeaderValue("Safari", "537.36"));
+
+        _client.DefaultRequestHeaders.Connection.Add("keep-alive");
+
     }
 
     public async Task<bool> Process(Report report)
@@ -177,7 +206,7 @@ internal class WebForm
 
     public void AddParameter(string name, string value)
     {
-        parameters.Add(new KeyValuePair<string, string>($"Content-Disposition: form-data; \"{name}\"", value));
+        parameters.Add(new KeyValuePair<string, string>($"Content-Disposition: form-data; name=\"{name}\"", value));
     }
 
     public FormUrlEncodedContent GetContent()
