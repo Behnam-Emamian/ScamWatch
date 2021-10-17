@@ -9,8 +9,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Business", "Business\Busine
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Business.Tests", "Business.Tests\Business.Tests.csproj", "{227590E3-236F-47BC-BB11-CF5F37DBC210}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ScamWatch2", "ScamWatch2\ScamWatch2.csproj", "{C6AA104C-41B2-4C52-B39C-A579C3F729B2}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -47,16 +45,6 @@ Global
 		{227590E3-236F-47BC-BB11-CF5F37DBC210}.Release|Any CPU.Build.0 = Release|Any CPU
 		{227590E3-236F-47BC-BB11-CF5F37DBC210}.Release|x86.ActiveCfg = Release|Any CPU
 		{227590E3-236F-47BC-BB11-CF5F37DBC210}.Release|x86.Build.0 = Release|Any CPU
-		{C6AA104C-41B2-4C52-B39C-A579C3F729B2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{C6AA104C-41B2-4C52-B39C-A579C3F729B2}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{C6AA104C-41B2-4C52-B39C-A579C3F729B2}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
-		{C6AA104C-41B2-4C52-B39C-A579C3F729B2}.Debug|x86.ActiveCfg = Debug|Any CPU
-		{C6AA104C-41B2-4C52-B39C-A579C3F729B2}.Debug|x86.Build.0 = Debug|Any CPU
-		{C6AA104C-41B2-4C52-B39C-A579C3F729B2}.Debug|x86.Deploy.0 = Debug|Any CPU
-		{C6AA104C-41B2-4C52-B39C-A579C3F729B2}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{C6AA104C-41B2-4C52-B39C-A579C3F729B2}.Release|Any CPU.Build.0 = Release|Any CPU
-		{C6AA104C-41B2-4C52-B39C-A579C3F729B2}.Release|x86.ActiveCfg = Release|Any CPU
-		{C6AA104C-41B2-4C52-B39C-A579C3F729B2}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

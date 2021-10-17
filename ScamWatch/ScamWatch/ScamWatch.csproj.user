@@ -3,9 +3,9 @@
   <PropertyGroup>
     <IsFirstTimeProjectOpen>False</IsFirstTimeProjectOpen>
     <ActiveDebugFramework>net6.0-android</ActiveDebugFramework>
-    <ActiveDebugProfile>Pixel 2 Pie 9.0 - API 28 (Android 9.0 - API 28)</ActiveDebugProfile>
-    <SelectedDevice>pixel_2_pie_9_0_-_api_28</SelectedDevice>
-    <DefaultDevice>pixel_2_pie_9_0_-_api_28</DefaultDevice>
+    <ActiveDebugProfile>Pixel 3 XL R 11.0 - API 30 (Android 11.0 - API 30)</ActiveDebugProfile>
+    <SelectedDevice>pixel_3_xl_r_11_0_-_api_30</SelectedDevice>
+    <DefaultDevice>pixel_3_xl_r_11_0_-_api_30</DefaultDevice>
   </PropertyGroup>
   <PropertyGroup Condition="'$(TargetPlatformIdentifier)'=='iOS'">
     <RuntimeIdentifier>iossimulator-x64</RuntimeIdentifier>

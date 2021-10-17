@@ -11,10 +11,7 @@
     x:TypeArguments="viewModels:HomeViewModel">
     <ContentPage.Content>
         <StackLayout>
-            <Label
-                HorizontalOptions="CenterAndExpand"
-                Text="Welcome!!&#10;App scaffolded with MvxScaffolding"
-                VerticalOptions="CenterAndExpand" />
+            <WebView Source="https://www.scamwatch.gov.au/report-a-scam" x:Name="webView" HorizontalOptions="FillAndExpand"  VerticalOptions="FillAndExpand" Navigated="webView_Navigated" />
         </StackLayout>
     </ContentPage.Content>
 </views:MvxContentPage>

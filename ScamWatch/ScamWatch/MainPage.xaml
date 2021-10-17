@@ -7,6 +7,10 @@
     <ScrollView Padding="{OnPlatform iOS='30,60,30,30', Default='30'}">
         <StackLayout Orientation="Vertical" >
 
+            <WebView Source="https://www.scamwatch.gov.au/report-a-scam"
+        HeightRequest="1000"
+        WidthRequest="1000" />
+            
             <Frame Margin="10" CornerRadius="5" BackgroundColor="#FF16394F" Padding="5">
 
                 <Label HeightRequest="50" TextColor="White"
